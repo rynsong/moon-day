@@ -160,6 +160,11 @@ func main() {
 	)
 	flag.Parse()
 
+	err = os.MkdirAll(filepath.Dir(cachePath), 0777)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	cacheStorage, err = bolt.Open(cachePath, 0600, nil)
 	if err != nil {
 		log.Fatal(err)
